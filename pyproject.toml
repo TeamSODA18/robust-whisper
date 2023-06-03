@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robust_whisper"
+description = "Package for getting the labels for signal processing attacks"
+readme = "README.rst"
+requires-python = ">=3.8"
+keywords = ["signal processing attacks", "classifier", "adversarial audio"]
+license = {text = "BSD-3-Clause"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "torch",
+    "torchaudio",
+    "whisper",
+    "requests",
+    "soundfile",
+    "numpy",
+    "transformers",
+    "datasets",
+]
+dynamic = ["version"]
