@@ -17,3 +17,15 @@ robust_asr = RobustWhisper()
 data, sample_rate = torchaudio.load(r'path\to\audio\file')
 
 print(robust_asr(data, sample_rate))
+```
+
+## Leaderboard
+
+| Dataset     | Attacked Model | Improvement |
+|-------------|----------------|-------------|
+| LibriSpeech |    Whisper     | 22.6467159% |
+|-------------|----------------|-------------|
+|             |                |             |
+|-------------|----------------|-------------|
+|             |                |             |
+

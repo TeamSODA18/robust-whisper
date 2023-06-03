@@ -49,7 +49,7 @@ for attacked, original in test_loader:
     print(wer_attack, "->", wer_recon)
     i += 1
     if i == 200:
-        break
+        pass
 
 wer_attack_arr = np.array(wer_attack_list)
 wer_recon_arr = np.array(wer_recon_list)
