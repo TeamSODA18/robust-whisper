@@ -1,5 +1,8 @@
 import whisper
 import torch
+from torch.utils.data import Dataset
+import numpy as np
+from torcheval.metrics import WordErrorRate
 
 
 def get_mel(X):
@@ -28,6 +31,25 @@ class GetXY(Dataset):
         attacked_mel = get_mel(attacked)
         original_mel = get_mel(original)
         return attacked_mel, original_mel
+    
+class GetXYEval(Dataset):
+    def __init__(self, dataset: Dataset, device, shuffle: bool = True):
+        super(GetXYEval, self).__init__()
+        self.dataset = dataset
+        self.device = device
+
+    def __len__(self):
+        return len(self.dataset)
+
+    def __getitem__(self, idx: int):
+        sample = self.dataset[idx]
+        attacked = torch.tensor(sample["audio_0"]["array"], dtype=torch.float32).to(
+            self.device
+        )
+        original = torch.tensor(sample["audio_1"]["array"], dtype=torch.float32).to(
+            self.device
+        )
+        return attacked, original
 
 
 class EarlyStopping:

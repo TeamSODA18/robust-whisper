@@ -1,9 +1,6 @@
 import whisper
 from datasets import load_dataset
 import torch
-from tqdm import tqdm
-from torcheval.metrics import WordErrorRate
-from torch.utils.data import Dataset
 import json
 import numpy as np
 from utils import *
@@ -13,7 +10,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 train_data = load_dataset(
     "TeamSODA/ae-signal_processing_attacks_whisper", split="train"
 )
-train_loader = GetXY(train_data, device=device)
+train_loader = GetXYEval(train_data, device=device)
 generator = torch.Generator().manual_seed(42)
 train_loader, val_loader, test_loader = torch.utils.data.random_split(
     train_loader,
@@ -67,8 +64,3 @@ wer_attack_arr[wer_attack_arr == 0] = 1
 improvement = improvement / wer_attack_arr
 
 print("improvement", np.mean(improvement) * 100, "%")
-
-wer = {"wer_attack_list": wer_attack_list, "wer_recon_list": wer_recon_list}
-
-with open("wer.json", "w") as outfile:
-    json.dump(wer, outfile)

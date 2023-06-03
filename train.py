@@ -1,10 +1,8 @@
 import whisper
 from datasets import load_dataset
-from torch.utils.data import Dataset
 import torch
 from tqdm import tqdm
 import random
-import numpy as np
 from utils import *
 
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
