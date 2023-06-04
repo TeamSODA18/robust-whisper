@@ -8,19 +8,9 @@ from robust_whisper.models import RobustWhisper
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 train_data = load_dataset(
-    "TeamSODA/ae-signal_processing_attacks_whisper", split="train"
+    "TeamSODA/ae-signal_processing_attacks_assembly_commonvoice", split="train"
 )
-train_loader = GetXYEval(train_data, device=device)
-generator = torch.Generator().manual_seed(42)
-train_loader, val_loader, test_loader = torch.utils.data.random_split(
-    train_loader,
-    [
-        int(len(train_loader) * 0.6),
-        int(len(train_loader) * 0.2),
-        int(len(train_loader) * 0.2),
-    ],
-    generator,
-)
+loader = GetXYEval(train_data, device=device)
 
 model = RobustWhisper()
 
@@ -31,7 +21,7 @@ wer_attack_list = []
 wer_recon_list = []
 
 i = 0
-for attacked, original in test_loader:
+for attacked, original in loader:
     attacked_transcript_new = model(attacked.squeeze(), 16000)
     attacked_transcript_original = get_transcript(attacked, original_model)
 
@@ -59,3 +49,4 @@ wer_attack_arr[wer_attack_arr == 0] = 1
 improvement = improvement / wer_attack_arr
 
 print("improvement", np.mean(improvement) * 100, "%")
+print("attacked samples", len(improvement))

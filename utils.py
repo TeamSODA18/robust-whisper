@@ -3,6 +3,7 @@ import torch
 from torch.utils.data import Dataset
 import numpy as np
 from torcheval.metrics import WordErrorRate
+from torchaudio.transforms import Resample
 
 
 def get_mel(X):
@@ -43,12 +44,14 @@ class GetXYEval(Dataset):
 
     def __getitem__(self, idx: int):
         sample = self.dataset[idx]
-        attacked = torch.tensor(sample["audio_0"]["array"], dtype=torch.float32).to(
-            self.device
-        )
-        original = torch.tensor(sample["audio_1"]["array"], dtype=torch.float32).to(
-            self.device
-        )
+        attacked = torch.tensor(sample["audio_0"]["array"], dtype=torch.float32)
+        resample = Resample(sample["audio_0"]["sampling_rate"], 16000)
+        attacked = resample(attacked).to(self.device)
+
+        original = torch.tensor(sample["audio_1"]["array"], dtype=torch.float32)
+        resample = Resample(sample["audio_1"]["sampling_rate"], 16000)
+        original = resample(original).to(self.device)
+
         return attacked, original
 
 
