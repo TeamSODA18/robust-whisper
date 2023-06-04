@@ -38,8 +38,8 @@ class RobustWhisper:
 
 
     def __call__(self, data: torch.Tensor, sample_rate: int):
-        data = data.squeeze().to(self.device)
+        data = data.squeeze()
         resample = Resample(sample_rate, 16000)
-        data = resample(data)
+        data = resample(data).to(self.device)
         transcription = self.get_transcript(data)
         return transcription
