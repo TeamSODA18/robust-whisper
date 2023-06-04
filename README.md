@@ -10,7 +10,7 @@ pip install git+https://github.com/TeamSODA18/robust-whisper.git
 ## Usage
 ```
 import torchaudio
-from robustwhisper.models import RobustWhisper
+from robust_whisper.models import RobustWhisper
 
 robust_asr = RobustWhisper()
 
