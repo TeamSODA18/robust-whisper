@@ -20,8 +20,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 train_data = load_dataset(
     # "TeamSODA/ae-signal_processing_attacks_whisper_librispeech", split="train"
     # "TeamSODA/ae-signal_processing_attacks_whisper_commonvoice", split="train"
-    "TeamSODA/ae-signal_processing_attacks_assembly_librispeech", split="train"
-    #"TeamSODA/ae-signal_processing_attacks_assembly_commonvoice", split="train"
+    # "TeamSODA/ae-signal_processing_attacks_assembly_librispeech", split="train"
+    "TeamSODA/ae-signal_processing_attacks_assembly_commonvoice", split="train"
 )
 loader = GetXYEval(train_data, device=device)
 # generator = torch.Generator().manual_seed(42)

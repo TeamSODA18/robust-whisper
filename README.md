@@ -20,14 +20,12 @@ print(robust_asr(data, sample_rate))
 ```
 
 ## Leaderboard
-
 <!-- | Dataset     | Attacked Model | Improvement |    Bening   |     MAE     |
 |-------------|----------------|-------------|-------------|-------------|
 | LibriSpeech |    Whisper     | 22.6467159% | - 2.5054850 |  1246.8671  |
 | CommonVoice |    Whisper     | 18.3795567% | -19.5676749 |   643.8285  |
 | LibriSpeech |   AssemblyAI   | 10.0086279% | - 5.3726637 |  1907.2000  |
 | CommonVoice |   AssemblyAI   |- 1.0471190% | - 4.6581197 |   719.6072  | -->
-
 
 | Dataset     | Attacked Model | attacked UD |  attacked D |  benign D   |
 |-------------|----------------|-------------|-------------|-------------|
@@ -41,8 +39,8 @@ print(robust_asr(data, sample_rate))
 |-------------|----------------|-------------|-------------|-------------|
 | LibriSpeech |    Whisper     |   0.10418   |  0.109869   |   0.025169  |
 | CommonVoice |    Whisper     |   0.43696   |  0.412723   |   0.158430  |
-| LibriSpeech |   AssemblyAI   |   0.35352   |  0.290059   |   -------   |
-| CommonVoice |   AssemblyAI   |   0.82819   |  1.443111   |   -------   |
+| LibriSpeech |   AssemblyAI   |   0.35352   |  0.290059   |   0.021349  |
+| CommonVoice |   AssemblyAI   |   0.82819   |  1.443111   |   0.099501  |
 
 ## Comparison MetricGan
 | Dataset     | Attacked Model | attacked UD |  attacked D |  benign D   |
