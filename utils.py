@@ -98,10 +98,17 @@ def get_wer(original_text, attacked_text, reconstructed_text):
     wer_recon = metric.compute().item()
 
     return wer_attack, wer_recon
+    
+def get_wer_single(original_text, attacked_text):
+    metric = WordErrorRate()
+    metric.update([attacked_text], [original_text])
+    wer_attack = metric.compute().item()
 
-def get_transcript(X, model):
+    return wer_attack
+
+def get_transcript(X, model, device):
     # detect the spoken language
-    mel = get_mel(X)
+    mel = get_mel(X).to(device)
     _, probs = model.detect_language(mel)
 
     # decode the audio

@@ -24,7 +24,7 @@ train_loader, val_loader, test_loader = torch.utils.data.random_split(
 
 model = whisper.load_model("base")
 encoder = model.encoder
-encoder.load_state_dict(torch.load("best_encoder_3.h5"))
+encoder.load_state_dict(torch.load("RobustEncoder_2.h5"))
 encoder.eval()
 model.encoder = encoder
 
